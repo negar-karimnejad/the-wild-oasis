@@ -4,19 +4,21 @@ const Row = styled.div`
   display: flex;
 
   ${(props) =>
-    props.type === "vertical" &&
+    props.type === "horizontal" &&
     css`
       align-items: center;
       justify-content: space-between;
     `}
   ${(props) =>
-    props.type === "horizontal" &&
+    props.type === "vertical" &&
     css`
       flex-direction: column;
       gap: 10px;
     `}
-  padding: 5px;
-  margin: 5px;
 `;
+
+Row.defaultProps = {
+  type: "vertical",
+};
 
 export default Row;
