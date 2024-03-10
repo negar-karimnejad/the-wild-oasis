@@ -1,21 +1,25 @@
+import { useState } from "react";
 import CabinTable from "../features/cabins/CabinTable";
+import CreateCabinForm from "../features/cabins/CreateCabinForm";
+import Button from "../ui/Button";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
 
 function Cabins() {
-
+  const [showForm, setShowForm] = useState(false);
   return (
     <>
       <Row type="horizontal">
         <Heading as="h1">All cabins</Heading>
-        {/* <img
-          src="https://wvbkbmtotxxgmmmatrsq.supabase.co/storage/v1/object/public/cabin-images/cabin-001.jpg"
-          alt=""
-        /> */}
-        <p>TEST</p>
       </Row>
       <Row>
         <CabinTable />
+        <div>
+          <Button onClick={() => setShowForm((prev) => !prev)}>
+            Add new cabin
+          </Button>
+        </div>
+        {showForm && <CreateCabinForm />}
       </Row>
     </>
   );
