@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
+import useOutsideClick from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -52,9 +53,11 @@ const Button = styled.button`
 `;
 
 function Modal({ children, onClose }) {
+  const ref = useOutsideClick(onClose);
+
   return (
     <Overlay>
-      <StyledModal>
+      <StyledModal ref={ref}>
         <Button onClick={onClose}>
           <HiXMark />
         </Button>

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import { HiTrash } from "react-icons/hi2";
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import useDeleteCabin from "./useDeleteCabin";
@@ -60,12 +60,6 @@ function CabinRow({ cabin }) {
         <span>&mdash;</span>
       )}
       <div>
-        <button disabled={isLoading} onClick={() => mutate(id)}>
-          <HiSquare2Stack />
-        </button>
-        <button disabled={isLoading} onClick={() => mutate(id)}>
-          <HiPencil />
-        </button>
         <button disabled={isLoading} onClick={() => mutate(id)}>
           <HiTrash />
         </button>
