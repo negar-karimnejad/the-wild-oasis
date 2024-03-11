@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
@@ -7,7 +8,7 @@ import Input from "../../ui/Input";
 import Textarea from "../../ui/Textarea";
 import useCreateCabin from "./useCreateCabin";
 
-function CreateCabinForm() {
+function CreateCabinForm({ onClose }) {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
@@ -15,13 +16,17 @@ function CreateCabinForm() {
 
   function onSubmit(data) {
     mutate({ ...data, image: data.image[0] });
+    onClose?.();
   }
   function onError(errors) {
     console.log(errors);
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onClose ? "modal" : "regular"}
+    >
       <FormRow label={"Cabin name"} error={errors?.name?.message}>
         <Input
           type="text"
@@ -94,7 +99,7 @@ function CreateCabinForm() {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" onClick={() => onClose?.()}>
           Cancel
         </Button>
         <Button disabled={isLoading}>Edit cabin</Button>
